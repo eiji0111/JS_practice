@@ -1,36 +1,13 @@
-class Student {
+var express = require('express');
+var app = express();
 
-  constructor(name) {
-    this.name = name;
-  }
+// EJSの設定
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
-  cal_avg(data) {
-    var sum = 0;
-    for (var i = 0; i < data.length; i++) {
-      sum += data[i];
-    }
-    var avg = sum / data.length;
-    return avg;
-  }
+app.get('/', function (req, res) {
+  res.render('test', {message: '<strong>強調表示</strong>'});
+});
 
-  jadge(avg) {
-    var result = 0;
-    if (avg >= 60) {
-      result = "passed";
-    }
-    if (avg <= 60) {
-      result = "failed";
-    }
-    return result;
-  }
-}
-
-var s1 = new Student("mori");
-var data = [50, 90, 10, 70, 60];
-var avg = s1.cal_avg(data);
-var result = s1.jadge(avg);
-
-console.log(s1);
-console.log(data);
-console.log(avg);
-console.log(result);
+app.listen(3000, function () {
+})
